@@ -58,7 +58,6 @@ class ParseFileCommand extends Command
         $parser->setPerPage($this->rowsCount);
 
         $handle = fopen(__DIR__ . '/../../public/uploads/'.$path, "r");
-//
 
         $generator = $this->csv_read($handle, ',');
 
@@ -66,7 +65,7 @@ class ParseFileCommand extends Command
             $parser->setData($item);
         }
 
-       $parser->done();
+        $parser->done();
 
 
         $output->writeln('Done!');
