@@ -24,5 +24,17 @@ services:
         tags:
             - { name: 'import', command: 'import' }
 
+    filler.postgres:
+        class: Parser\Fillers\Postgres
+        arguments:
+            - "@Doctrine"
+
+    filler.mysql:
+        class: Parser\Fillers\Mysql
+        arguments:
+            - "@Doctrine"
+
+
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
