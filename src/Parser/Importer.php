@@ -2,7 +2,7 @@
 
 namespace App\Parser;
 
-class Parser {
+class Importer {
 
 
     public function __construct(private Filler $filler)

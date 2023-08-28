@@ -2,9 +2,7 @@
 
 namespace App\Parser\Fillers;
 
-use App\Entity\Imported;
 use App\Parser\Filler;
-use DateTime;
 use Doctrine\Persistence\ManagerRegistry;
 
 class Postgres extends Filler {
@@ -25,14 +23,7 @@ class Postgres extends Filler {
         
         $this->data[] = $row;
 
-//        $import = new Imported();
-//        $import->setUuid($row[0]);
-//        $import->setCtime(new DateTime($row[1]));
-//        $import->setEventName($row[2]);
-//
-//        $this->entityManager->persist($import);
-
-        if($this->lineNumber % $this->per_page === 0){
+        if($this->lineNumber % $this->perPage === 0){
             $this->done();
         }
     }
@@ -47,7 +38,6 @@ class Postgres extends Filler {
         
         if(!count($blocks)){
             $this->lastRow = $this->lineNumber;
-            var_dump($this->lineNumber);
             $this->data = [];
             return;
         }
@@ -55,10 +45,7 @@ class Postgres extends Filler {
         $sql = 'insert into imported(uuid, ctime, eventname) values '.implode(',', $blocks);
         $this->entityManager->getConnection()->executeUpdate($sql);
 
-//        $this->entityManager->flush();
-//        $this->entityManager->clear();
         $this->lastRow = $this->lineNumber;
-        var_dump($this->lineNumber);
         $this->data = [];
 
     }

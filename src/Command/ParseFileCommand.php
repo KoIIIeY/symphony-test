@@ -42,16 +42,16 @@ class ParseFileCommand extends Command
 
         switch ($this->connection){
             case 'mysql':
-                $parser = new \App\Parser\Parser($this->mysql);
+                $parser = new \App\Parser\Importer($this->mysql);
                 break;
             case 'postgres':
-                $parser = new \App\Parser\Parser($this->postgers);
+                $parser = new \App\Parser\Importer($this->postgers);
                 break;
             case 'redis':
-                $parser = new \App\Parser\Parser($this->redis);
+                $parser = new \App\Parser\Importer($this->redis);
                 break;
             default:
-                $parser = new \App\Parser\Parser($this->postgers);
+                $parser = new \App\Parser\Importer($this->postgers);
                 break;
         }
 
